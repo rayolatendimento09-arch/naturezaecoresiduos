@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natureza Eco Resíduos | Logística Reversa, Coleta e Descarte de Baterias e Resíduos Eletrônicos</title>
+<meta name="description" content="Natureza Eco Resíduos é especialista em logística reversa e coleta de Baterias de Chumbo, Baterias de Lítio e Sucata Eletrônica, com destinação ambientalmente correta para empresas. Solicite um orçamento pelo WhatsApp.">
+<meta name="keywords" content="logística reversa, descarte de baterias, coleta de baterias de chumbo, coleta de baterias de lítio, sucata eletrônica, resíduos eletrônicos, reciclagem, coleta empresarial, sustentabilidade, economia circular, gestão ambiental, destinação correta de resíduos">
+<meta name="author" content="Natureza Eco Resíduos">
+<link rel="canonical" href="https://www.naturezaecoresiduos.com.br/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Natureza Eco Resíduos">
+<meta property="og:title" content="Natureza Eco Resíduos | Logística Reversa e Descarte Correto de Resíduos Eletrônicos">
+<meta property="og:description" content="Coleta, logística reversa e destinação correta de Baterias de Chumbo, Baterias de Lítio e Sucata Eletrônica, com total conformidade ambiental. Peça seu orçamento agora.">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://www.naturezaecoresiduos.com.br/">
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%231E6B34'/%3E%3Cpath d='M50 20 C30 35 30 65 50 80 C70 65 70 35 50 20 Z' fill='%235DBB63'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Natureza Eco Resíduos",
+  "description": "Empresa especializada em coleta, logística reversa e destinação correta de Baterias de Chumbo, Baterias de Lítio e Sucata Eletrônica.",
+  "url": "https://www.naturezaecoresiduos.com.br/",
+  "email": "naturezaecoresiduos@gmail.com",
+  "telephone": "+5511960128330",
+  "sameAs": ["https://www.instagram.com/naturezaecoresiduos"],
+  "areaServed": "BR",
+  "makesOffer": [
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Logística Reversa"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Coleta de Baterias"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Descarte de Baterias"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Coleta de Resíduos Eletrônicos"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Destinação Correta de Resíduos"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Coleta Empresarial"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Gestão Ambiental"}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Como funciona a coleta?","acceptedAnswer":{"@type":"Answer","text":"Você solicita o orçamento pelo WhatsApp ou e-mail, agendamos a coleta no local (empresa ou ponto combinado) e cuidamos de toda a logística reversa até a destinação final correta."}},
+    {"@type":"Question","name":"Quais materiais são aceitos?","acceptedAnswer":{"@type":"Answer","text":"Coletamos Baterias de Chumbo, Baterias de Lítio e Sucata Eletrônica, sempre com destinação ambientalmente correta e em conformidade com a legislação vigente."}},
+    {"@type":"Question","name":"Vocês atendem empresas?","acceptedAnswer":{"@type":"Answer","text":"Sim, atendemos empresas de todos os portes com contratos de coleta recorrente, relatórios de destinação e total conformidade com a legislação ambiental."}},
+    {"@type":"Question","name":"Como solicitar orçamento?","acceptedAnswer":{"@type":"Answer","text":"Basta clicar em um dos botões do site para falar diretamente com nossa equipe pelo WhatsApp, ou enviar um e-mail para naturezaecoresiduos@gmail.com."}}
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+
+<style>
+:root{
+  --dark: #1E6B34;
+  --dark-2: #154D25;
+  --light: #5DBB63;
+  --light-2: #7ED084;
+  --mint: #EAF6EC;
+  --mint-2: #F4FAF5;
+  --gray: #F3F5F4;
+  --gray-line: #E2E8E4;
+  --white: #FFFFFF;
+  --ink: #10241A;
+  --ink-soft: #4E6259;
+  --shadow: 0 20px 50px -25px rgba(20,60,35,0.35);
+  --radius: 18px;
+  --ease: cubic-bezier(.22,.9,.32,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  color:var(--ink);
+  background:var(--white);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,.font-display{
+  font-family:'Space Grotesk',sans-serif;
+  letter-spacing:-0.02em;
+  color:var(--dark-2);
+}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+img,svg{display:block;max-width:100%;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+.container{max-width:1180px;margin:0 auto;padding:0 24px;}
+section{position:relative;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--dark);background:var(--mint);
+  padding:8px 16px;border-radius:100px;margin-bottom:20px;
+}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--light);}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 28px;border-radius:100px;font-weight:600;font-size:15.5px;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .3s;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--dark);color:var(--white);box-shadow:0 14px 30px -12px rgba(30,107,52,0.55);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 36px -12px rgba(30,107,52,0.6);}
+.btn-outline{border:1.5px solid var(--gray-line);color:var(--dark-2);background:var(--white);}
+.btn-outline:hover{border-color:var(--dark);transform:translateY(-3px);}
+.btn-light{background:var(--white);color:var(--dark);}
+.btn-light:hover{transform:translateY(-3px);box-shadow:0 16px 30px -14px rgba(0,0,0,0.25);}
+.btn svg{width:18px;height:18px;stroke-width:2;}
+
+/* ---------- HEADER ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,0.85);backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s, box-shadow .3s;
+}
+header.scrolled{border-color:var(--gray-line);box-shadow:0 8px 24px -20px rgba(0,0,0,0.3);}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;color:var(--dark-2);}
+.logo-mark{width:36px;height:36px;flex:none;}
+.nav-links{display:flex;align-items:center;gap:36px;}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-soft);transition:color .25s;position:relative;}
+.nav-links a:hover{color:var(--dark);}
+.nav-cta{display:flex;align-items:center;gap:14px;}
+.nav-cta .btn{padding:11px 20px;font-size:14px;}
+.burger{display:none;width:26px;height:20px;position:relative;}
+.burger span{position:absolute;left:0;right:0;height:2px;background:var(--dark-2);transition:.3s;}
+.burger span:nth-child(1){top:0;}
+.burger span:nth-child(2){top:9px;}
+.burger span:nth-child(3){top:18px;}
+.burger.open span:nth-child(1){transform:translateY(9px) rotate(45deg);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg);}
+.mobile-menu{
+  display:none;position:fixed;top:70px;left:0;right:0;bottom:0;background:var(--white);
+  z-index:99;padding:30px 24px;flex-direction:column;gap:6px;overflow-y:auto;
+}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{padding:16px 4px;font-size:18px;font-weight:600;border-bottom:1px solid var(--gray-line);color:var(--ink);}
+.mobile-menu .btn{margin-top:20px;justify-content:center;}
+
+/* ---------- HERO ---------- */
+.hero{
+  padding:170px 0 100px;
+  background:
+    radial-gradient(1000px 500px at 85% -10%, var(--mint) 0%, transparent 60%),
+    linear-gradient(180deg,var(--white), var(--gray) 120%);
+  overflow:hidden;
+}
+.hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:60px;align-items:center;}
+.hero h1{font-size:clamp(34px,4.4vw,56px);line-height:1.08;margin-bottom:22px;}
+.hero h1 em{font-style:normal;color:var(--dark);position:relative;}
+.hero p.lead{font-size:18px;color:var(--ink-soft);max-width:520px;margin-bottom:36px;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:44px;}
+.hero-trust{display:flex;flex-wrap:wrap;gap:26px;}
+.hero-trust div{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-soft);font-weight:500;}
+.hero-trust svg{width:20px;height:20px;color:var(--dark);flex:none;}
+
+.hero-visual{position:relative;aspect-ratio:1/1;}
+.orbit-ring{position:absolute;inset:0;border-radius:50%;border:1.5px dashed rgba(30,107,52,0.28);animation:spin 40s linear infinite;}
+.orbit-ring.r2{inset:10%;border-color:rgba(93,187,99,0.35);animation-duration:55s;animation-direction:reverse;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.hero-core{
+  position:absolute;inset:16%;border-radius:50%;
+  background:linear-gradient(160deg,var(--dark) 0%, #279140 55%, var(--light) 100%);
+  box-shadow:0 40px 70px -30px rgba(20,80,40,0.5), inset 0 0 0 10px rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-core svg{width:46%;height:46%;color:#fff;}
+.hero-chip{
+  position:absolute;background:var(--white);border-radius:16px;padding:14px 16px;
+  box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;font-size:13.5px;font-weight:600;
+  animation:float 6s ease-in-out infinite;
+}
+.hero-chip svg{width:22px;height:22px;color:var(--dark);flex:none;}
+.hero-chip small{display:block;font-weight:500;color:var(--ink-soft);font-size:11.5px;}
+.chip-1{top:6%;left:-4%;animation-delay:0s;}
+.chip-2{bottom:10%;right:-6%;animation-delay:2s;}
+.chip-3{bottom:-2%;left:14%;animation-delay:4s;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+/* ---------- SECTION HEADS ---------- */
+.section-head{max-width:640px;margin-bottom:56px;}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.section-head h2{font-size:clamp(28px,3.2vw,40px);line-height:1.15;margin-bottom:16px;}
+.section-head p{color:var(--ink-soft);font-size:16.5px;}
+.pad{padding:110px 0;}
+
+/* ---------- MATERIAIS ---------- */
+.materials-strip{padding:60px 0 20px;background:var(--white);}
+.materials-head{text-align:center;margin-bottom:32px;}
+.materials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.material-card{
+  display:flex;align-items:center;gap:16px;
+  background:var(--mint-2);border:1px solid var(--gray-line);border-radius:18px;
+  padding:24px 22px;transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.material-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);}
+.material-card .m-icon{
+  width:52px;height:52px;border-radius:14px;background:var(--dark);flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.material-card .m-icon svg{width:26px;height:26px;color:#fff;}
+.material-card h4{font-size:16.5px;color:var(--ink);margin-bottom:2px;}
+.material-card p{font-size:13px;color:var(--ink-soft);}
+@media (max-width:720px){
+  .materials-grid{grid-template-columns:1fr;}
+}
+
+/* ---------- SOBRE ---------- */
+.about-grid{display:grid;grid-template-columns:0.95fr 1.05fr;gap:70px;align-items:center;}
+.about-art{position:relative;background:var(--mint);border-radius:28px;padding:40px;aspect-ratio:4/3.4;display:flex;align-items:center;justify-content:center;}
+.about-art svg{width:80%;}
+.about-copy p{color:var(--ink-soft);margin-bottom:18px;font-size:16px;}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px;}
+.about-stats div{border-top:2px solid var(--dark);padding-top:12px;}
+.about-stats strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:24px;color:var(--dark-2);}
+.about-stats span{font-size:12.5px;color:var(--ink-soft);}
+
+/* ---------- COMO FUNCIONA (loop) ---------- */
+.how{background:var(--gray);}
+.loop-wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:center;}
+.loop-diagram{position:relative;aspect-ratio:1/1;}
+.loop-track{
+  position:absolute;inset:8%;border-radius:50%;
+  border:1.6px dashed rgba(30,107,52,0.35);
+}
+.loop-particle{
+  position:absolute;width:12px;height:12px;border-radius:50%;
+  background:var(--light);box-shadow:0 0 0 6px rgba(93,187,99,0.22);
+  offset-path:circle(46% at 50% 50%);
+  animation:travel 12s linear infinite;
+}
+@keyframes travel{from{offset-distance:0%;}to{offset-distance:100%;}}
+.loop-node{
+  position:absolute;transform:translate(-50%,-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;width:104px;text-align:center;
+}
+.loop-node .dot{
+  width:56px;height:56px;border-radius:50%;background:var(--white);
+  box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--gray-line);transition:transform .3s,border-color .3s;
+}
+.loop-node:hover .dot{transform:scale(1.08);border-color:var(--light);}
+.loop-node .dot svg{width:24px;height:24px;color:var(--dark);}
+.loop-node span{font-size:12.5px;font-weight:600;color:var(--ink);}
+.loop-center{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:32%;height:32%;border-radius:50%;
+  background:linear-gradient(160deg,var(--dark),var(--light));
+  display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;
+  font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;padding:10px;
+  box-shadow:0 30px 50px -25px rgba(20,80,40,0.55);
+}
+.how-copy p{color:var(--ink-soft);margin-bottom:16px;}
+.how-list{margin-top:24px;display:flex;flex-direction:column;gap:14px;}
+.how-list li{display:flex;gap:12px;font-size:15px;color:var(--ink);align-items:flex-start;}
+.how-list svg{width:20px;height:20px;color:var(--light);flex:none;margin-top:2px;}
+
+/* ---------- SERVIÇOS ---------- */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.service-card{
+  background:var(--white);border:1px solid var(--gray-line);border-radius:var(--radius);
+  padding:32px 26px;transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .3s;
+  display:flex;flex-direction:column;gap:14px;
+}
+.service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent;}
+.service-icon{
+  width:52px;height:52px;border-radius:14px;background:var(--mint);
+  display:flex;align-items:center;justify-content:center;
+}
+.service-icon svg{width:26px;height:26px;color:var(--dark);}
+.service-card h3{font-size:18.5px;margin-bottom:2px;}
+.service-card p{font-size:14.5px;color:var(--ink-soft);flex:1;}
+.service-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--dark);margin-top:4px;}
+.service-link svg{width:15px;height:15px;transition:transform .25s;}
+.service-card:hover .service-link svg{transform:translateX(4px);}
+
+/* ---------- BENEFICIOS ---------- */
+.benefits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.benefit-card{
+  background:var(--gray);border-radius:16px;padding:26px 20px;text-align:left;
+  transition:background .3s, transform .3s;
+}
+.benefit-card:hover{background:var(--mint);transform:translateY(-4px);}
+.benefit-card svg{width:26px;height:26px;color:var(--dark);margin-bottom:14px;}
+.benefit-card h4{font-size:15px;font-weight:600;color:var(--ink);}
+
+/* ---------- DIFERENCIAIS ---------- */
+.diff{background:var(--dark);color:#fff;position:relative;overflow:hidden;}
+.diff::before{
+  content:"";position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,0.08),transparent 70%);
+  top:-200px;right:-200px;
+}
+.diff .section-head h2, .diff .section-head p{color:#fff;}
+.diff .section-head p{color:rgba(255,255,255,0.75);}
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(255,255,255,0.14);border-radius:20px;overflow:hidden;}
+.diff-card{background:var(--dark-2);padding:34px 28px;display:flex;flex-direction:column;gap:14px;}
+.diff-card svg{width:26px;height:26px;color:var(--light-2);}
+.diff-card h4{font-size:16.5px;font-weight:600;color:#fff;font-family:'Space Grotesk',sans-serif;}
+.diff-card p{font-size:14px;color:rgba(255,255,255,0.72);}
+
+/* ---------- NUMEROS ---------- */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+.stat{padding:36px 16px;border-radius:20px;background:var(--mint-2);border:1px solid var(--gray-line);}
+.stat strong{
+  font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,4vw,44px);color:var(--dark-2);display:block;
+}
+.stat span{font-size:13.5px;color:var(--ink-soft);font-weight:500;}
+
+/* ---------- CTA ---------- */
+.cta{
+  background:linear-gradient(120deg,var(--dark) 0%, #21804A 60%, var(--light) 130%);
+  color:#fff;text-align:center;padding:90px 0;position:relative;overflow:hidden;
+}
+.cta::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(500px 300px at 20% 20%,rgba(255,255,255,0.15),transparent 60%);
+}
+.cta h2{color:#fff;font-size:clamp(26px,3.6vw,38px);max-width:680px;margin:0 auto 30px;position:relative;}
+.cta .btn-light{position:relative;}
+
+/* ---------- FAQ ---------- */
+.faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
+.faq-item{border:1px solid var(--gray-line);border-radius:16px;overflow:hidden;background:var(--white);}
+.faq-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:22px 26px;font-weight:600;font-size:16px;color:var(--ink);text-align:left;
+}
+.faq-q svg{width:20px;height:20px;flex:none;transition:transform .3s;color:var(--dark);}
+.faq-item.open .faq-q svg{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);}
+.faq-a p{padding:0 26px 22px;color:var(--ink-soft);font-size:15px;max-width:680px;}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--dark-2);color:rgba(255,255,255,0.82);padding:80px 0 30px;}
+.footer-grid{display:grid;grid-template-columns:1.3fr 0.8fr 0.8fr 1.1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid rgba(255,255,255,0.12);}
+.footer-logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;margin-bottom:14px;}
+.footer-logo .logo-mark{width:32px;height:32px;}
+.footer-col h5{color:#fff;font-size:14px;margin-bottom:16px;letter-spacing:0.06em;text-transform:uppercase;}
+.footer-col ul{display:flex;flex-direction:column;gap:10px;}
+.footer-col a, .footer-col p{font-size:14.5px;color:rgba(255,255,255,0.72);transition:color .25s;}
+.footer-col a:hover{color:#fff;}
+.footer-social{display:flex;gap:12px;margin-top:16px;}
+.footer-social a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;}
+.footer-social svg{width:17px;height:17px;color:#fff;}
+.footer-map{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.15);aspect-ratio:16/10;background:#243b30;filter:grayscale(0.25) contrast(1.05) brightness(0.95);}
+.footer-bottom{padding-top:26px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:rgba(255,255,255,0.55);}
+
+/* ---------- WHATSAPP FLOAT ---------- */
+.wa-float{
+  position:fixed;bottom:26px;right:26px;z-index:90;
+  width:60px;height:60px;border-radius:50%;background:#1E6B34;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 16px 34px -14px rgba(20,90,45,0.6);
+  animation:pulse 2.6s ease-in-out infinite;
+}
+.wa-float svg{width:28px;height:28px;color:#fff;}
+@keyframes pulse{0%,100%{box-shadow:0 16px 34px -14px rgba(20,90,45,0.6);}50%{box-shadow:0 16px 34px -14px rgba(20,90,45,0.9),0 0 0 10px rgba(30,107,52,0.12);}}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease), transform .8s var(--ease);}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-visual{max-width:420px;margin:0 auto;}
+  .about-grid{grid-template-columns:1fr;}
+  .about-art{order:-1;}
+  .loop-wrap{grid-template-columns:1fr;}
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .benefits-grid{grid-template-columns:repeat(2,1fr);}
+  .diff-grid{grid-template-columns:repeat(2,1fr);}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:720px){
+  .nav-links{display:none;}
+  .nav-cta .btn-outline{display:none;}
+  .burger{display:block;}
+  .hero{padding:130px 0 70px;}
+  .pad{padding:70px 0;}
+  .services-grid{grid-template-columns:1fr;}
+  .benefits-grid{grid-template-columns:1fr 1fr;}
+  .diff-grid{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .hero-chip{display:none;}
+  .loop-node{width:76px;}
+  .loop-node .dot{width:44px;height:44px;}
+  .loop-node .dot svg{width:19px;height:19px;}
+  .loop-node span{font-size:10.5px;}
+  .loop-center{font-size:10.5px;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+:focus-visible{outline:2.5px solid var(--dark);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="container nav">
+    <a href="#topo" class="logo">
+      <svg class="logo-mark" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="48" fill="#1E6B34"/><path d="M50 22 C32 36 32 64 50 78 C68 64 68 36 50 22 Z" fill="#5DBB63"/></svg>
+      Natureza Eco Resíduos
+    </a>
+    <nav class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contato" class="btn btn-outline">Orçamento</a>
+      <a id="wa-header" href="#" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4.3-1.2L3 20l1.3-5A8.4 8.4 0 0 1 3 11.5 8.5 8.5 0 0 1 11.5 3a8.5 8.5 0 0 1 9.5 8.5z"/></svg>
+        WhatsApp
+      </a>
+      <button class="burger" id="burger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#sobre">Sobre</a>
+  <a href="#como-funciona">Como Funciona</a>
+  <a href="#servicos">Serviços</a>
+  <a href="#beneficios">Benefícios</a>
+  <a href="#diferenciais">Diferenciais</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contato">Contato</a>
+  <a href="#" id="wa-mobile" target="_blank" rel="noopener" class="btn btn-primary">Falar no WhatsApp</a>
+</div>
+
+<main id="topo">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow reveal">Logística Reversa &amp; Meio Ambiente</div>
+      <h1 class="reveal">Soluções inteligentes para o <em>descarte correto</em> de resíduos e logística reversa.</h1>
+      <p class="lead reveal">Coletamos, destinamos e tratamos Baterias de Chumbo, Baterias de Lítio e Sucata Eletrônica com responsabilidade ambiental e total conformidade — do primeiro contato até o certificado de destinação.</p>
+      <div class="hero-actions reveal">
+        <a href="#contato" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          Solicitar Orçamento
+        </a>
+        <a id="wa-hero" href="#" target="_blank" rel="noopener" class="btn btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4.3-1.2L3 20l1.3-5A8.4 8.4 0 0 1 3 11.5 8.5 8.5 0 0 1 11.5 3a8.5 8.5 0 0 1 9.5 8.5z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+      <div class="hero-trust reveal">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4z"/></svg>Conformidade ambiental</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7zM6.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM17.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>Coleta especializada</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l2.5 2.5L16 9"/></svg>Atendimento empresarial</div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="orbit-ring"></div>
+      <div class="orbit-ring r2"></div>
+      <div class="hero-core">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+          <path d="M17.5 3a4.5 4.5 0 0 1 3.09 7.78L12 19.27l-8.59-8.49A4.5 4.5 0 0 1 9.9 4.2L12 6.28l1.6-1.58A4.48 4.48 0 0 1 17.5 3z"/>
+          <path d="M9 12l1.5 1.5L15 9"/>
+        </svg>
+      </div>
+      <div class="hero-chip chip-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="19" rx="2"/><path d="M10 6h4"/></svg><div>Baterias<small>Coleta segura</small></div></div>
+      <div class="hero-chip chip-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="6.5" cy="19" r="1.6"/><circle cx="17.5" cy="19" r="1.6"/></svg><div>Logística<small>Coleta agendada</small></div></div>
+      <div class="hero-chip chip-3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M20 10a8 8 0 0 0-14.9-3M4 14a8 8 0 0 0 14.9 3"/></svg><div>Economia<small>Circular</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="materials-strip" id="materiais">
+  <div class="container">
+    <div class="materials-head reveal">
+      <span class="eyebrow">É Isso Que Coletamos</span>
+    </div>
+    <div class="materials-grid reveal" id="materials-grid"></div>
+  </div>
+</section>
+
+<section class="pad" id="sobre">
+  <div class="container about-grid">
+    <div class="about-art reveal">
+      <svg viewBox="0 0 400 340" fill="none">
+        <circle cx="200" cy="170" r="150" fill="#DFF3E1"/>
+        <rect x="70" y="150" width="140" height="90" rx="10" fill="#1E6B34"/>
+        <rect x="90" y="120" width="60" height="45" rx="6" fill="#5DBB63"/>
+        <circle cx="110" cy="245" r="16" fill="#154D25"/>
+        <circle cx="185" cy="245" r="16" fill="#154D25"/>
+        <rect x="220" y="170" width="80" height="70" rx="8" fill="#5DBB63"/>
+        <path d="M240 190h40M240 205h40M240 220h25" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+        <path d="M120 100l14 -22 14 22" stroke="#1E6B34" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="about-copy">
+      <div class="eyebrow reveal">Quem Somos</div>
+      <h2 class="reveal" style="font-size:clamp(26px,3vw,36px);margin-bottom:18px;">Sobre a Natureza Eco Resíduos</h2>
+      <p class="reveal">A Natureza Eco Resíduos atua promovendo soluções sustentáveis por meio da logística reversa, conectando consumidores, comércio, distribuidores e fabricantes em um ciclo responsável de coleta, reciclagem e reaproveitamento.</p>
+      <p class="reveal">Contribuímos para a preservação do meio ambiente auxiliando empresas de todos os portes no descarte ambientalmente correto de Baterias de Chumbo, Baterias de Lítio e Sucata Eletrônica, com processos seguros, rastreáveis e em conformidade com a legislação ambiental vigente.</p>
+      <p class="reveal">Mais do que uma coleta, oferecemos um compromisso: transformar resíduo em economia circular, reduzindo impactos ambientais e fortalecendo a responsabilidade social das empresas parceiras.</p>
+      <div class="about-stats reveal">
+        <div><strong>100%</strong><span>Conformidade ambiental</span></div>
+        <div><strong>B2B</strong><span>Foco em empresas</span></div>
+        <div><strong>Fim a fim</strong><span>Coleta à destinação</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="pad how" id="como-funciona">
+  <div class="container loop-wrap">
+    <div class="how-copy">
+      <div class="eyebrow reveal">O Ciclo da Logística Reversa</div>
+      <h2 class="reveal" style="font-size:clamp(26px,3vw,36px);margin-bottom:16px;">Como funciona</h2>
+      <p class="reveal">A logística reversa fecha o ciclo de vida do produto: do consumo à reciclagem, cada etapa é planejada para que o resíduo volte à cadeia produtiva como recurso, e não como passivo ambiental.</p>
+      <ul class="how-list reveal">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l2.5 2.5L16 9"/></svg>Coleta programada com o consumidor e o comércio</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l2.5 2.5L16 9"/></svg>Transporte seguro até distribuidores e fabricantes parceiros</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l2.5 2.5L16 9"/></svg>Reciclagem e reaproveitamento com rastreabilidade total</li>
+      </ul>
+    </div>
+    <div class="loop-diagram reveal">
+      <div class="loop-track"></div>
+      <div class="loop-particle"></div>
+      <div class="loop-center">Logística<br>Reversa</div>
+      <div class="loop-node" style="top:8%;left:50%;"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div><span>Consumidor</span></div>
+      <div class="loop-node" style="top:23.8%;left:82.8%;"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="6.5" cy="19" r="1.6"/><circle cx="17.5" cy="19" r="1.6"/></svg></div><span>Coleta</span></div>
+      <div class="loop-node" style="top:59.3%;left:91%;"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-5 9 5v12"/><path d="M9 21v-6h6v6"/></svg></div><span>Comércio</span></div>
+      <div class="loop-node" style="top:87.8%;left:68.2%;"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="10" rx="2"/><path d="M7 9V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/></svg></div><span>Distribuidor</span></div>
+      <div class="loop-node" style="top:87.8%;left:31.8%;"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V10l4-4 4 4v11M12 21V13l4-3 4 3v8"/></svg></div><span>Fabricante</span></div>
+      <div class="loop-node" style="top:59.3%;left:9%;"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M20 10a8 8 0 0 0-14.9-3M4 14a8 8 0 0 0 14.9 3"/></svg></div><span>Reciclagem</span></div>
+      <div class="loop-node" style="top:23.8%;left:17.2%;"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4z"/></svg></div><span>Reaproveitamento</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="pad" id="servicos">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow">O Que Fazemos</div>
+      <h2>Serviços especializados em resíduos e logística reversa</h2>
+      <p>Soluções completas de coleta, tratamento e destinação para empresas que levam a sério a responsabilidade ambiental.</p>
+    </div>
+    <div class="services-grid" id="services-grid"></div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="pad" id="beneficios" style="background:var(--white);border-top:1px solid var(--gray-line);">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow">Benefícios</div>
+      <h2>Por que investir em destinação correta</h2>
+    </div>
+    <div class="benefits-grid" id="benefits-grid"></div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="pad diff" id="diferenciais">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="background:rgba(255,255,255,0.14);color:#fff;">Diferenciais</div>
+      <h2>Por que escolher a Natureza Eco Resíduos</h2>
+      <p>Experiência, tecnologia e cuidado ambiental em cada etapa do processo.</p>
+    </div>
+    <div class="diff-grid reveal" id="diff-grid"></div>
+  </div>
+</section>
+
+<!-- NUMEROS -->
+<section class="pad" id="numeros">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow">Nossos Números</div>
+      <h2>Resultados que comprovam nosso compromisso</h2>
+    </div>
+    <div class="stats-grid reveal">
+      <div class="stat"><strong data-count="180">0</strong><span>Empresas atendidas</span></div>
+      <div class="stat"><strong data-count="2400">0</strong><span>Coletas realizadas</span></div>
+      <div class="stat"><strong data-count="95" data-suffix="t">0</strong><span>Toneladas destinadas corretamente</span></div>
+      <div class="stat"><strong data-count="8">0</strong><span>Anos de experiência</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta-verde">
+  <div class="container">
+    <h2 class="reveal">Faça parte das empresas que contribuem para um futuro mais sustentável.</h2>
+    <a id="wa-cta" href="#" target="_blank" rel="noopener" class="btn btn-light reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4.3-1.2L3 20l1.3-5A8.4 8.4 0 0 1 3 11.5 8.5 8.5 0 0 1 11.5 3a8.5 8.5 0 0 1 9.5 8.5z"/></svg>
+      Solicitar Coleta pelo WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="pad" id="faq">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow">Dúvidas Frequentes</div>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq-list reveal" id="faq-list"></div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="pad" id="contato" style="background:var(--gray);">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow">Contato</div>
+      <h2>Solicite seu orçamento agora</h2>
+      <p>Fale com nossa equipe pelo WhatsApp, Instagram ou e-mail e receba uma proposta sob medida para sua empresa.</p>
+    </div>
+    <div class="reveal" style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+      <a id="wa-contato" href="#" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4.3-1.2L3 20l1.3-5A8.4 8.4 0 0 1 3 11.5 8.5 8.5 0 0 1 11.5 3a8.5 8.5 0 0 1 9.5 8.5z"/></svg>
+        Chamar no WhatsApp
+      </a>
+      <a href="mailto:naturezaecoresiduos@gmail.com" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        Enviar E-mail
+      </a>
+      <a href="https://www.instagram.com/naturezaecoresiduos" target="_blank" rel="noopener" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <svg class="logo-mark" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="48" fill="#5DBB63"/><path d="M50 22 C32 36 32 64 50 78 C68 64 68 36 50 22 Z" fill="#1E6B34"/></svg>
+          Natureza Eco Resíduos
+        </div>
+        <p>Coleta, logística reversa e destinação correta de Baterias de Chumbo, Baterias de Lítio e Sucata Eletrônica, com responsabilidade ambiental e total conformidade.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/naturezaecoresiduos" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+          <a id="wa-footer" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4.3-1.2L3 20l1.3-5A8.4 8.4 0 0 1 3 11.5 8.5 8.5 0 0 1 11.5 3a8.5 8.5 0 0 1 9.5 8.5z"/></svg></a>
+          <a href="mailto:naturezaecoresiduos@gmail.com" aria-label="E-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Menu Rápido</h5>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#como-funciona">Como Funciona</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contato</h5>
+        <ul>
+          <li><a href="mailto:naturezaecoresiduos@gmail.com">naturezaecoresiduos@gmail.com</a></li>
+          <li><a href="#" id="wa-footer-text">(11) 96012-8330</a></li>
+          <li><a href="https://www.instagram.com/naturezaecoresiduos" target="_blank" rel="noopener">@naturezaecoresiduos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Área de Atendimento</h5>
+        <div class="footer-map" id="footer-map"></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Natureza Eco Resíduos. Todos os direitos reservados.</span>
+      <span>Logística Reversa · Coleta de Baterias · Resíduos Eletrônicos · Economia Circular</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4.3-1.2L3 20l1.3-5A8.4 8.4 0 0 1 3 11.5 8.5 8.5 0 0 1 11.5 3a8.5 8.5 0 0 1 9.5 8.5z"/></svg>
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+/* ---------------- WHATSAPP LINKS ---------------- */
+const WA_NUMBER = "5511960128330";
+const waMsg = encodeURIComponent("Olá! Gostaria de solicitar um orçamento para coleta de resíduos com a Natureza Eco Resíduos.");
+const waLink = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
+["wa-header","wa-hero","wa-cta","wa-contato","wa-footer","wa-footer-text","wa-float","wa-mobile"].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) el.href = waLink;
+});
+
+/* ---------------- HEADER SCROLL ---------------- */
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', ()=>{
+  header.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+/* ---------------- MOBILE MENU ---------------- */
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobile-menu');
+burger.addEventListener('click', ()=>{
+  burger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  burger.classList.remove('open'); mobileMenu.classList.remove('open');
+}));
+
+/* ---------------- ICONS ---------------- */
+const ICONS = {
+  reverse: '<path d="M4 4v6h6M20 20v-6h-6"/><path d="M20 10a8 8 0 0 0-14.9-3M4 14a8 8 0 0 0 14.9 3"/>',
+  battery: '<rect x="7" y="2" width="10" height="19" rx="2"/><path d="M10 6h4"/>',
+  batteryX: '<rect x="7" y="2" width="10" height="19" rx="2"/><path d="M9.5 10l5 5m0-5l-5 5"/>',
+  eWaste: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+  destination: '<path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4z"/><path d="M9 12l2 2 4-4"/>',
+  truck: '<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="6.5" cy="19" r="1.6"/><circle cx="17.5" cy="19" r="1.6"/>',
+  gov: '<path d="M12 3l9 5H3l9-5z"/><path d="M5 10v8M10 10v8M14 10v8M19 10v8"/><path d="M3 21h18"/>',
+  circular: '<path d="M4 4v6h6M20 20v-6h-6"/><path d="M20 10a8 8 0 0 0-14.9-3M4 14a8 8 0 0 0 14.9 3"/>',
+  shield: '<path d="M12 3l7 4v5c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-4z"/>',
+  leaf: '<path d="M5 21c9 0 14-5 14-14V4h-3C7 4 4 9 4 16v5z"/>',
+  users: '<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><circle cx="17.5" cy="9" r="2.6"/><path d="M15 20c0-2.6 1.6-4.7 3.9-5.5"/>',
+  bolt: '<path d="M13 3L4 14h6l-1 7 9-11h-6l1-7z"/>',
+  handshake: '<path d="M8 12l3 3 5-5"/><circle cx="12" cy="12" r="9"/>',
+  chart: '<path d="M4 20V10M12 20V4M20 20v-7"/><path d="M2 20h20"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+  check: '<circle cx="12" cy="12" r="9"/><path d="M8 12l2.5 2.5L16 9"/>',
+  building: '<rect x="4" y="3" width="10" height="18" rx="1"/><path d="M14 21h6V9l-6-4"/><path d="M8 7h.01M8 11h.01M8 15h.01"/>',
+  route: '<circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8.2 7.2c3 2 6 4 7.6 8.6"/>',
+  headset: '<path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M7 19a5 5 0 0 0 5 3"/>'
+};
+function icon(name){ return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">${ICONS[name]||ICONS.leaf}</svg>`; }
+
+/* ---------------- MATERIAIS ---------------- */
+const materials = [
+  {icon:'battery', title:'Baterias de Chumbo', desc:'Coleta e descarte seguro de baterias chumbo-ácidas.'},
+  {icon:'bolt', title:'Baterias de Lítio', desc:'Manuseio especializado para baterias de íon-lítio.'},
+  {icon:'eWaste', title:'Sucata Eletrônica', desc:'Equipamentos e componentes eletroeletrônicos fora de uso.'},
+];
+document.getElementById('materials-grid').innerHTML = materials.map(m=>`
+  <div class="material-card">
+    <div class="m-icon">${icon(m.icon)}</div>
+    <div><h4>${m.title}</h4><p>${m.desc}</p></div>
+  </div>`).join('');
+
+/* ---------------- SERVIÇOS ---------------- */
+const services = [
+  {icon:'reverse', title:'Logística Reversa', desc:'Estruturamos todo o fluxo reverso do produto, do consumidor até a destinação final, com rastreabilidade completa.'},
+  {icon:'battery', title:'Coleta de Baterias', desc:'Coleta segura de baterias de diversos tipos, com armazenamento e transporte conforme normas ambientais.'},
+  {icon:'batteryX', title:'Descarte de Baterias', desc:'Descarte ambientalmente correto de baterias inservíveis, evitando contaminação do solo e da água.'},
+  {icon:'eWaste', title:'Coleta de Resíduos Eletrônicos', desc:'Retirada de equipamentos e componentes eletroeletrônicos fora de uso, prontos para reciclagem.'},
+  {icon:'destination', title:'Destinação Correta de Resíduos', desc:'Encaminhamento dos resíduos coletados para parceiros licenciados, com emissão de comprovantes.'},
+  {icon:'truck', title:'Coleta Empresarial', desc:'Contratos de coleta recorrente para empresas de todos os portes, com agenda flexível e logística dedicada.'},
+  {icon:'gov', title:'Gestão Ambiental', desc:'Apoio técnico para que sua empresa esteja em conformidade com a legislação ambiental vigente.'},
+  {icon:'leaf', title:'Sustentabilidade Empresarial', desc:'Programas sob medida para reduzir o impacto ambiental das operações da sua empresa.'},
+  {icon:'circular', title:'Economia Circular', desc:'Transformamos resíduos em recursos, reintegrando materiais à cadeia produtiva.'},
+  {icon:'shield', title:'Tratamento Ambientalmente Correto', desc:'Processos seguros de tratamento que eliminam riscos ambientais e à saúde pública.'},
+];
+document.getElementById('services-grid').innerHTML = services.map(s=>`
+  <div class="service-card reveal">
+    <div class="service-icon">${icon(s.icon)}</div>
+    <h3>${s.title}</h3>
+    <p>${s.desc}</p>
+    <a href="#contato" class="service-link">Saiba Mais
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>`).join('');
+
+/* ---------------- BENEFICIOS ---------------- */
+const benefits = [
+  {icon:'destination', title:'Destinação correta'},
+  {icon:'gov', title:'Conformidade ambiental'},
+  {icon:'users', title:'Responsabilidade social'},
+  {icon:'leaf', title:'Sustentabilidade'},
+  {icon:'circular', title:'Economia circular'},
+  {icon:'route', title:'Logística especializada'},
+  {icon:'bolt', title:'Coleta rápida'},
+  {icon:'headset', title:'Atendimento personalizado'},
+];
+document.getElementById('benefits-grid').innerHTML = benefits.map(b=>`
+  <div class="benefit-card reveal">${icon(b.icon)}<h4>${b.title}</h4></div>`).join('');
+
+/* ---------------- DIFERENCIAIS ---------------- */
+const diffs = [
+  {icon:'users', title:'Equipe especializada', desc:'Profissionais treinados em manuseio seguro de resíduos e baterias.'},
+  {icon:'building', title:'Atendimento para empresas', desc:'Estrutura pronta para atender demandas corporativas de qualquer porte.'},
+  {icon:'leaf', title:'Processos sustentáveis', desc:'Cada etapa pensada para reduzir o impacto ambiental das operações.'},
+  {icon:'shield', title:'Segurança ambiental', desc:'Protocolos rígidos para evitar contaminação e riscos à saúde.'},
+  {icon:'check', title:'Compromisso com o meio ambiente', desc:'Nosso propósito é reduzir passivos ambientais das empresas parceiras.'},
+  {icon:'route', title:'Logística eficiente', desc:'Rotas otimizadas e agenda flexível para coletas pontuais ou recorrentes.'},
+];
+document.getElementById('diff-grid').innerHTML = diffs.map(d=>`
+  <div class="diff-card">${icon(d.icon)}<h4>${d.title}</h4><p>${d.desc}</p></div>`).join('');
+
+/* ---------------- FAQ ---------------- */
+const faqs = [
+  {q:'Como funciona a coleta?', a:'Você solicita o orçamento pelo WhatsApp ou e-mail, agendamos a coleta no local combinado (empresa, comércio ou ponto de entrega) e cuidamos de toda a logística reversa até a destinação final correta, com comprovação do processo.'},
+  {q:'Quais materiais são aceitos?', a:'Coletamos Baterias de Chumbo, Baterias de Lítio e Sucata Eletrônica, sempre com destinação ambientalmente correta e em conformidade com a legislação vigente.'},
+  {q:'Vocês atendem empresas?', a:'Sim. Atendemos empresas de todos os portes com contratos de coleta recorrente ou pontual, relatórios de destinação e total conformidade com a legislação ambiental.'},
+  {q:'Como solicitar orçamento?', a:'Basta clicar em um dos botões de WhatsApp do site para falar diretamente com nossa equipe, ou enviar um e-mail para naturezaecoresiduos@gmail.com com os detalhes da sua demanda.'},
+];
+document.getElementById('faq-list').innerHTML = faqs.map((f,i)=>`
+  <div class="faq-item${i===0?' open':''}">
+    <button class="faq-q" aria-expanded="${i===0}">
+      ${f.q}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+    </button>
+    <div class="faq-a"><p>${f.a}</p></div>
+  </div>`).join('');
+
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const item = btn.closest('.faq-item');
+    const answer = item.querySelector('.faq-a');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight = null;
+      i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+      btn.setAttribute('aria-expanded','true');
+    }
+  });
+});
+// open first answer height on load
+window.addEventListener('load', ()=>{
+  const first = document.querySelector('.faq-item.open .faq-a');
+  if(first) first.style.maxHeight = first.scrollHeight + 'px';
+});
+
+/* ---------------- COUNTERS ---------------- */
+function animateCount(el){
+  const target = parseInt(el.getAttribute('data-count'),10);
+  const suffix = el.getAttribute('data-suffix') || '';
+  const dur = 1600;
+  const start = performance.now();
+  function step(now){
+    const p = Math.min((now-start)/dur, 1);
+    const eased = 1 - Math.pow(1-p, 3);
+    el.textContent = Math.round(target*eased) + suffix;
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const statObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('[data-count]').forEach(animateCount);
+      statObserver.unobserve(e.target);
+    }
+  });
+},{threshold:0.4});
+const statsGrid = document.querySelector('.stats-grid');
+if(statsGrid) statObserver.observe(statsGrid);
+
+/* ---------------- SCROLL REVEAL ---------------- */
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); revealObserver.unobserve(e.target); }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+// re-scan for elements added dynamically (services/benefits/diff/faq)
+setTimeout(()=>{
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>revealObserver.observe(el));
+}, 50);
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---------------- MAPA (ÁREA DE ATENDIMENTO) ---------------- */
+(function initMap(){
+  const el = document.getElementById('footer-map');
+  if(!el || typeof L === 'undefined') return;
+  const map = L.map(el, {
+    zoomControl:false, dragging:false, scrollWheelZoom:false,
+    doubleClickZoom:false, touchZoom:false, boxZoom:false, keyboard:false
+  }).setView([-23.5505,-46.6333], 10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:'&copy; OpenStreetMap contributors', maxZoom:18
+  }).addTo(map);
+  const icon = L.divIcon({
+    html:'<div style="width:16px;height:16px;border-radius:50%;background:#5DBB63;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.4);"></div>',
+    className:'', iconSize:[16,16], iconAnchor:[8,8]
+  });
+  L.marker([-23.5505,-46.6333], {icon}).addTo(map)
+    .bindPopup('Natureza Eco Resíduos — Área de atendimento');
+  setTimeout(()=>map.invalidateSize(), 300);
+})();
+</script>
+</body>
+</html>
